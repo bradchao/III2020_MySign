@@ -38,6 +38,10 @@ public class MyView extends View {
         }
     }
 
+    public void clear(){
+        lines.clear();
+        invalidate();
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         HashMap<String,Float> point = new HashMap<>();
