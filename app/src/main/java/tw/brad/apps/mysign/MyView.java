@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 public class MyView extends View {
     private LinkedList<LinkedList<HashMap<String,Float>>> lines = new LinkedList<>();
+    private LinkedList<LinkedList<HashMap<String,Float>>> recycler = new LinkedList<>();
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setBackgroundColor(Color.GREEN);
@@ -44,8 +45,17 @@ public class MyView extends View {
     }
 
     public void undo(){
-        lines.removeLast();
-        invalidate();
+        if (lines.size()>0) {
+            recycler.add(lines.removeLast());
+            invalidate();
+        }
+    }
+
+    public void redo(){
+        if (recycler.size()>0) {
+            lines.add(recycler.removeLast());
+            invalidate();
+        }
     }
 
     @Override
@@ -58,6 +68,7 @@ public class MyView extends View {
             LinkedList<HashMap<String,Float>> line = new LinkedList<>();
             lines.add(line);
             line.add(point);
+            recycler.clear();
         }else if (event.getAction() == MotionEvent.ACTION_MOVE){
             lines.getLast().add(point);
         }

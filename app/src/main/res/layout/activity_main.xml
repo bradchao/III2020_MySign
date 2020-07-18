@@ -26,6 +26,12 @@
             android:text="Undo"
             android:onClick="undo"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Redo"
+            android:onClick="redo"
+            />
     </LinearLayout>
     <tw.brad.apps.mysign.MyView
         android:id="@+id/myView"
