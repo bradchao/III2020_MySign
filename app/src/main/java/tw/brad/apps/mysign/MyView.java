@@ -42,6 +42,12 @@ public class MyView extends View {
         lines.clear();
         invalidate();
     }
+
+    public void undo(){
+        lines.removeLast();
+        invalidate();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         HashMap<String,Float> point = new HashMap<>();
